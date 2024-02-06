@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {	
@@ -30,14 +30,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int main () {
-//         char *src = "/|\x12\xff\x09\0\x42\042\\42|\\";
-//         int size = 12;
-//         if (memchr(src, '\0', size) == ft_memchr(src, '\0', size))
-//                 printf("TEST_SUCCESS");
-//         else
-// 			printf("TEST_FAILED");	
-// }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {	
@@ -31,12 +31,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trimmed = ft_substr(s1, start, len);
 	return (trimmed);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *s1;
-// 	char *set;
-// 	s1 = "thiago o nome thiago dele é thiago";
-// 	set = "thiago";
-// 	printf("%s\n",ft_strtrim(s1, set));	
-// }

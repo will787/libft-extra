@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -37,17 +37,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (0);
 }
-//#include <bsd/string.h>
-// int main(void)
-// {
-//         char *s1 = "aaxx";lll
-//         // size_t max = strlen(s1) + 1;
-//         // char *i1 = strnstr(s1, "xx", 2);
-//         // char *i2 = ft_strnstr(s1, "xx", 2);
-// 		printf("result strnstr ==> &&%s\n", strnstr(s1, "xx", 3));
-// 		printf("result ft_strnstr ==> &&%s\n", ft_strnstr(s1, "xx", 3));
-//         // if (i1 == i2)
-//         //         printf("TEST_SUCCESS");
-//         // printf("TEST_FAILED");
-// 		return(0);
-// }

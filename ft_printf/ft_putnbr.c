@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wivieira <wivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 16:14:19 by wivieira          #+#    #+#             */
-/*   Updated: 2023/10/25 18:08:16 by wivieira         ###   ########.fr       */
+/*   Created: 2023/12/05 14:26:47 by wivieira          #+#    #+#             */
+/*   Updated: 2023/12/08 13:26:08 by wivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "ft_printf.h"
 
-void	*ft_memset(void *s, int c, size_t n)
-{	
-	char	*str;
+int	ft_putnbr(int n)
+{
+	char	*putnbr;
+	int		lenput;
 
-	str = (char *) s;
-	while (n > 0)
-	{	
-		str[n - 1] = c;
-		n--;
-	}
-	return (s);
+	putnbr = ft_itoa(n);
+	lenput = ft_strlen(putnbr);
+	ft_putstr_fd(putnbr, 1);
+	free(putnbr);
+	return (lenput);
 }

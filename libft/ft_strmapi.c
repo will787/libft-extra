@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
@@ -32,16 +32,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	}
 	return (ptr);
 }
-// char f(unsigned int i, char c)
-// {
-//     char str;
-//     str = c + 1;
-//     return(str);
-// }
-// int main(void)
-// {
-//     char str1[] = "aaaBBBBAAAaaDDDDaaa";
-// 	char* str2;
-// 	str2 = ft_strmapi(str1, *f);
-// 	printf("%s\n", str2);
-// }

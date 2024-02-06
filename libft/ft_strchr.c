@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strchr(char const*s, int c)
 {
@@ -27,20 +27,3 @@ char	*ft_strchr(char const*s, int c)
 		return ((char *) s);
 	return (0);
 }
-// #include <stdio.h>
-// #include <string.h>
-// int main(void)
-// {
-// 	    char *src = "the cake is a lie !\0I'm hidden lol\r\n";
-//         char *d1 = strchr(src, 't' + 256);
-// 		printf("%s\n", d1);
-// 		int c = 1024;
-// 		char p = (char) c;
-// 		printf("%d\n", p);
-//         char *d2 = ft_strchr(src, 't' + 256);
-// 		printf("%s\n", d2);
-//         if (d1 == d2)
-//                 printf("TEST_SUCCESS");
-//         else
-// 			printf("TEST_FAILED");
-// }

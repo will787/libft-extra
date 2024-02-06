@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wivieira <wivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 16:14:19 by wivieira          #+#    #+#             */
-/*   Updated: 2023/10/25 18:08:16 by wivieira         ###   ########.fr       */
+/*   Created: 2023/12/06 19:06:33 by wivieira          #+#    #+#             */
+/*   Updated: 2023/12/08 13:29:11 by wivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "ft_printf.h"
 
-void	*ft_memset(void *s, int c, size_t n)
-{	
-	char	*str;
+int	ft_putpointer(const char value, long long n)
+{
+	int					prefix;
+	int					putlen;
+	unsigned long long	nb;
 
-	str = (char *) s;
-	while (n > 0)
-	{	
-		str[n - 1] = c;
-		n--;
-	}
-	return (s);
+	nb = (unsigned long long)n;
+	if (n == 0)
+		return (write(1, "(nil)", 5));
+	prefix = write(1, "0x", 2);
+	putlen = ft_puthex_pointer(value, nb);
+	return (prefix + putlen);
 }

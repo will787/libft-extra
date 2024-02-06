@@ -1,75 +1,51 @@
-SRC = ft_isalpha.c \
-       ft_isdigit.c \
-       ft_isalnum.c \
-       ft_isprint.c \
-       ft_toupper.c \
-       ft_tolower.c \
-       ft_strncmp.c \
-       ft_memcmp.c \
-       ft_memchr.c \
-       ft_memset.c \
-       ft_bzero.c \
-       ft_memcpy.c \
-       ft_memmove.c \
-       ft_strlen.c \
-       ft_strlcpy.c \
-       ft_strlcat.c \
-       ft_strchr.c \
-       ft_strrchr.c \
-       ft_strnstr.c \
-		ft_atoi.c \
-		ft_isascii.c \
-		ft_calloc.c \
-		ft_strdup.c \
-       ft_substr.c \
-		ft_strjoin.c \
-		ft_strtrim.c \
-       ft_split.c \
-       ft_itoa.c \
-       ft_strmapi.c \
-       ft_striteri.c \
-       ft_putchar_fd.c \
-       ft_putstr_fd.c \
-       ft_putendl_fd.c \
-       ft_putnbr_fd.c \
+# Nome do seu executável
+TARGET = libft.a
 
-BONUSB = ft_lstnew_bonus.c \
-       ft_lstadd_front_bonus.c \
-       ft_lstsize_bonus.c \
-       ft_lstlast_bonus.c \
-       ft_lstadd_back_bonus.c \
-	   ft_lstdelone_bonus.c \
-       ft_lstclear_bonus.c \
-       ft_lstiter_bonus.c \
-       ft_lstmap_bonus.c \
+# Diretórios
+SRC_DIR = src
+OBJ_DIR = obj
+INCLUDE_DIR = ./includes
 
-OBJ = $(SRC:.c=.o)
-BONUS_OBJ = $(BONUSB:.c=.o)
-NAME = libft.a
-HEADER = libft.h
-ccc = cc
-LIBC = ar rcs
-CFLAGS = -Wall -Wextra -Werror
+# Listas de arquivos fonte para cada módulo
+FT_PRINTF_SRCS = $(wildcard ft_printf/*.c)
+GET_NEXT_LINE_SRCS = $(wildcard get_next_line/*.c)
+LIBFT_SRCS = $(wildcard libft/*.c)
 
-ifdef	WITH_BONUS
-	OBJ += $(BONUS_OBJ)
-endif
+# Lista de objetos gerados para cada módulo
+FT_PRINTF_OBJS = $(patsubst %.c, $(OBJ_DIR)/ft_printf/%.o, $(notdir $(FT_PRINTF_SRCS)))
+GET_NEXT_LINE_OBJS = $(patsubst %.c, $(OBJ_DIR)/get_next_line/%.o, $(notdir $(GET_NEXT_LINE_SRCS)))
+LIBFT_OBJS = $(patsubst %.c, $(OBJ_DIR)/libft/%.o, $(notdir $(LIBFT_SRCS)))
 
-.c.o:
-	${ccc} ${CFLAGS} -c $< -o ${<:.c=.o}
-	$(LIBC) $(NAME) ${<:.c=.o}
+# Flags de compilação e bibliotecas
+CC = gcc
+CFLAGS = -Wall -Wextra -I$(INCLUDE_DIR)
+LDFLAGS = -Llibft -lft
 
-$(NAME): $(OBJ)
+# Regras de compilação
+all: $(TARGET)
 
-bonus: 
-	@make WITH_BONUS=TRUE --no-print-directory
+$(TARGET): $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT_OBJS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-all: $(NAME) 
+$(OBJ_DIR)/ft_printf/%.o: ft_printf/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR)/get_next_line/%.o: get_next_line/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/libft/%.o: libft/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Criação dos diretórios de objetos
+$(shell mkdir -p $(OBJ_DIR)/ft_printf $(OBJ_DIR)/get_next_line $(OBJ_DIR)/libft)
+
+# Limpeza dos objetos e do executável
 clean:
-	-rm -f $(OBJ) $(BONUS_OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	-rm -f $(NAME)
+	rm -f $(TARGET)
 
 re: fclean all
+
+.PHONY: all clean fclean re

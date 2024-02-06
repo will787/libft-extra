@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -24,14 +24,3 @@ t_list	*ft_lstlast(t_list *lst)
 	}
 	return (lst);
 }
-// int main(void)
-// {
-//     // aqui basicamente ele guarda os elemento
-//     // entao o primeiro elemento que foi guardado
-//     // sera o ultimo deles, que é "ultimo"
-//     t_list *lst = ft_lstnew("ultimo");
-//     ft_lstadd_front(&lst, ft_lstnew("meio"));
-//     ft_lstadd_front(&lst, ft_lstnew("primeiro"));
-//     t_list *end = ft_lstlast(lst);
-//     printf("%s\n", (char *) end->content);
-// }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
@@ -24,11 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
-// int main(void)
-// {
-//     t_list *ls;
-//     ls = ft_lstnew("12345");
-//     int size = ft_lstsize(ls);
-
-//         printf("Tamanho da lista: %d\n",  size);
-// }
