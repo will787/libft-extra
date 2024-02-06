@@ -84,21 +84,21 @@ FT_PRINTF_OBJS = $(patsubst %.c, $(OBJ_DIR)/ft_printf/%.o, $(notdir $(FT_PRINTF_
 GET_NEXT_LINE_OBJS = $(patsubst %.c, $(OBJ_DIR)/get_next_line/%.o, $(notdir $(GET_NEXT_LINE_SRCS)))
 LIBFT_OBJS = $(patsubst %.c, $(OBJ_DIR)/libft/%.o, $(notdir $(LIBFT_SRCS)))
 
-# Nome da biblioteca estática
+# .*-*..*-*. LIB NAME .*-*..*-*.
 NAME = libft.a
 
-# Flags de compilação
+# .*-*..*-*. FLAGS COMPILERS .*-*..*-*.
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR)
 
-#RULES SILENT
+# .*-*..*-*. RULES SILENT .*-*..*-*.
 .SILENT:
 
-# Regra padrão
+# .*-*..*-*. RULES DEFAULT .*-*..*-*.
 all: $(NAME)
-	@printf "\n$(GREEN)COMPILED:$(PURPLE)$(PURPLE) $(NAME)$(PURPLE)\n"
+	@printf "\n$(GREEN)Arquivo Útil:$(PURPLE)$(PURPLE) $(NAME)$(PURPLE)\n"
 
-# Regras de compilação dos objetos para cada módulo
+# .*-*..*-*. RULES COMPILATION EACH MODELS .*-*..*-*.
 $(OBJ_DIR)/ft_printf/%.o: ft_printf/%.c | $(OBJ_DIR)/ft_printf
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "$(YELLOW)Compilando:$(PURPLE) $< [$(GREEN)OK$(PURPLE)]\n"
@@ -111,7 +111,7 @@ $(OBJ_DIR)/libft/%.o: libft/%.c | $(OBJ_DIR)/libft
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "$(YELLOW)Compilando:$(PURPLE) $< [$(GREEN)OK$(PURPLE)]\n"
 
-# Criação dos diretórios de objetos
+# .*-*..*-*. CREATIONS DIRECTIONS OBJECTS FOR EACH MODELS .*-*..*-*.
 $(OBJ_DIR)/ft_printf:
 	mkdir -p $@
 
@@ -121,11 +121,11 @@ $(OBJ_DIR)/get_next_line:
 $(OBJ_DIR)/libft:
 	mkdir -p $@
 
-# Regra para criar a biblioteca estática
+# .*-*..*-*. RULES EACH CREATION FOR LIB STATIC .*-*..*-*.
 $(NAME): $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT_OBJS)
 	ar rcs $@ $^
 
-# Alvo para limpar os objetos
+# .*-*..*-*. CLEAN OBJECTS .*-*..*-*.
 clean:
 	rm -rf $(OBJ_DIR)
 
@@ -133,4 +133,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
 .PHONY: all clean
+
+#.*-*..*-*. endif .*-*..*-*.
