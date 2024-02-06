@@ -21,10 +21,10 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-typedef struct s_list
+typedef struct g_list
 {
 	char			*content;
-	struct s_list	*next;
+	struct g_list	*next;
 }					t_list;
 
 char	*get_next_line(int fd);

@@ -1,10 +1,7 @@
-# Nome do seu executável
-TARGET = libft.a
-
 # Diretórios
 SRC_DIR = src
 OBJ_DIR = obj
-INCLUDE_DIR = ./includes
+INCLUDE_DIR = includes
 
 # Listas de arquivos fonte para cada módulo
 FT_PRINTF_SRCS = $(wildcard ft_printf/*.c)
@@ -16,36 +13,42 @@ FT_PRINTF_OBJS = $(patsubst %.c, $(OBJ_DIR)/ft_printf/%.o, $(notdir $(FT_PRINTF_
 GET_NEXT_LINE_OBJS = $(patsubst %.c, $(OBJ_DIR)/get_next_line/%.o, $(notdir $(GET_NEXT_LINE_SRCS)))
 LIBFT_OBJS = $(patsubst %.c, $(OBJ_DIR)/libft/%.o, $(notdir $(LIBFT_SRCS)))
 
-# Flags de compilação e bibliotecas
-CC = gcc
-CFLAGS = -Wall -Wextra -I$(INCLUDE_DIR)
-LDFLAGS = -Llibft -lft
+# Nome da biblioteca estática
+TARGET = libft.a
 
-# Regras de compilação
+# Flags de compilação
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR)
+
+# Regra padrão
 all: $(TARGET)
 
-$(TARGET): $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-
-$(OBJ_DIR)/ft_printf/%.o: ft_printf/%.c
+# Regras de compilação dos objetos para cada módulo
+$(OBJ_DIR)/ft_printf/%.o: ft_printf/%.c | $(OBJ_DIR)/ft_printf
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/get_next_line/%.o: get_next_line/%.c
+$(OBJ_DIR)/get_next_line/%.o: get_next_line/%.c | $(OBJ_DIR)/get_next_line
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/libft/%.o: libft/%.c
+$(OBJ_DIR)/libft/%.o: libft/%.c | $(OBJ_DIR)/libft
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Criação dos diretórios de objetos
-$(shell mkdir -p $(OBJ_DIR)/ft_printf $(OBJ_DIR)/get_next_line $(OBJ_DIR)/libft)
+$(OBJ_DIR)/ft_printf:
+	mkdir -p $@
 
-# Limpeza dos objetos e do executável
+$(OBJ_DIR)/get_next_line:
+	mkdir -p $@
+
+$(OBJ_DIR)/libft:
+	mkdir -p $@
+
+# Regra para criar a biblioteca estática
+$(TARGET): $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT_OBJS)
+	ar rcs $@ $^
+
+# Alvo para limpar os objetos
 clean:
 	rm -rf $(OBJ_DIR)
 
-fclean: clean
-	rm -f $(TARGET)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all clean
