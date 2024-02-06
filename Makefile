@@ -13,9 +13,6 @@ RED = \033[31m
 WHITE = \033[37m
 FCOLOR = \033[0m
 
-
-
-
 # .*-*..*-*..*-*. LIST ARCHIVES IN MODULES .*-*..*-*..*-*.
 
 FT_PRINTF_SRCS := 	ft_printf.c \
@@ -28,10 +25,8 @@ FT_PRINTF_SRCS := 	ft_printf.c \
 					ft_putstr.c \
 					ft_utoa.c 
 
-
 GET_NEXT_LINE_SRCS := 	get_next_line_bonus.c \
 						get_next_line_utils_bonus.c \
-
 
 LIBFT_SRCS := 	ft_atoi.c \
 				ft_bzero.c \
