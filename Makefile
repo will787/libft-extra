@@ -51,4 +51,8 @@ $(TARGET): $(FT_PRINTF_OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT_OBJS)
 clean:
 	rm -rf $(OBJ_DIR)
 
+fclean: clean
+	rm -f $(TARGET)
+
+re: fclean all
 .PHONY: all clean
